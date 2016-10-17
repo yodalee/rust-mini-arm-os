@@ -23,7 +23,7 @@
 .text
 .align
 FUNCTION            defaultResetHandler
-b                   defaultExceptionHandler     /* if we ever get here, we'll continue into an infinite loop for safety reasons */
+bl rust_main
 ENDFUNC             defaultResetHandler
 
 FUNCTION            defaultExceptionHandler

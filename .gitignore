@@ -1,5 +1,8 @@
 *.swp
+*.o
 *.elf
 *.bin
 *.list
 DAC_OUT_PUT*
+target
+Cargo.lock
