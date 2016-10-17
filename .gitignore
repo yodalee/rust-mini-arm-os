@@ -1,0 +1,5 @@
+*.swp
+*.elf
+*.bin
+*.list
+DAC_OUT_PUT*
