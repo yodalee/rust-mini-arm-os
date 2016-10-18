@@ -1,2 +1,2 @@
 build with
---target=armv7-unknown-linux-gnueabihf
+--target=thumbv7em-none-eabi

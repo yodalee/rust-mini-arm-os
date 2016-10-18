@@ -6,7 +6,7 @@ LD := $(CROSS_COMPILE)ld
 
 CFLAGS = -fno-common -O0 -mcpu=cortex-m3 -mthumb -nostartfiles
 
-rust_target = armv7-unknown-linux-gnueabihf
+rust_target = thumbv7em-none-eabi
 rust_os := ./target/$(rust_target)/debug/libmini_arm.a
 linker_script = hello.ld
 assembly_object_files = startup.o
@@ -16,7 +16,7 @@ TARGET = hello.elf
 all: $(TARGET)
 
 $(TARGET): cargo $(rust_os) $(assembly_object_files) $(LINKER_SCRIPT)
-	$(LD) -n -T $(linker_script) -o $@ $(assembly_object_files) $(rust_os)
+	$(LD) -n --gc-sections -T $(linker_script) -o $@ $(assembly_object_files) $(rust_os)
 	$(CROSS_COMPILE)objcopy -Obinary hello.elf hello.bin
 	$(CROSS_COMPILE)objdump -S hello.elf > hello.list
 
@@ -32,5 +32,5 @@ qemu: $(TARGET)
 	@echo
 	qemu-system-arm -M stm32-p103 -nographic -kernel hello.bin
 
-# clean:
-# 	rm -f *.o *.bin *.elf *.list DAC*
+clean:
+	rm -f *.o *.bin *.elf *.list DAC*

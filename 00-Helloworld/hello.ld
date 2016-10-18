@@ -1,9 +1,12 @@
-_stack = 0x0;
+MEMORY
+{
+  FLASH (rx) : ORIGIN = 0x00000000, LENGTH = 128K
+}
+
 SECTIONS {
-  . = 0x0;
   .text :
   {
     KEEP(*(isr_vector))
-    *(.text)
-  }
+      *(.text)
+  } > FLASH
 }
